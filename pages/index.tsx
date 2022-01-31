@@ -1,16 +1,13 @@
 import Head from 'next/head'
+import Center from '../components/Center'
 import Sidebar from '../components/Sidebar'
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Spotify Party</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
-      <main className="h-screen overflow-hidden bg-black">
+    <div className="h-screen overflow-hidden bg-black">
+      <main className="flex ">
         <Sidebar />
-        {/* Center */}
+        <Center />
       </main>
       <div>{/* Player */}</div>
     </div>

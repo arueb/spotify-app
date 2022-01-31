@@ -2,9 +2,10 @@ import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 
 export async function middleware(req: any) {
-  const token = await getToken({ req, secret: process.env.JWT_SECRET })
+  // check for token
+  const token = await getToken({ req, secret: process.env.JWT_SECRET! }) // ! is non null assertion operator
 
-  const { pathname } = req.nextUrl
+  const { pathname } = req.nextUrl // where the request is headed next
   // allow the request if the following is true
   // 1. It's a requst for next-auth session & provider fetching s
   // 2. The token exist

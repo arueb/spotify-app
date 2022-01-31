@@ -1,6 +1,6 @@
 import { getProviders, signIn } from 'next-auth/react'
 
-function Login({ providers }) {
+function Login({ providers }: { providers: any }) {
   console.log('Providers', providers)
 
   return (
