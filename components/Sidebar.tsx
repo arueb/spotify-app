@@ -65,9 +65,11 @@ export default function Sidebar() {
         <hr className="border-t-[0.1px] border-gray-900" />
 
         {/* playlists */}
-        {playlists.map((playlist: any) => {
-          return <p key={playlist.id}>{playlist.name}</p>
-        })}
+        {playlists.map((playlist: any) => (
+          <p className="cursor-pointer hover:text-white" key={playlist.id}>
+            {playlist.name}
+          </p>
+        ))}
       </div>
     </div>
   )
