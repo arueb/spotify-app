@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { playlistIdState } from '../atoms/playlistAtom'
 import {
   HomeIcon,
   SearchIcon,
@@ -15,6 +17,7 @@ export default function Sidebar() {
   const spotifyApi = useSpotify()
   const { data: session, status } = useSession()
   const [playlists, setPlaylists] = useState([])
+  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState)
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -24,10 +27,25 @@ export default function Sidebar() {
     }
   }, [session, spotifyApi])
 
+  console.log('The playlist id is >>>', playlistId)
   console.log('playlists:', playlists)
   console.log('session:', session)
   return (
-    <div className="h-screen overflow-y-scroll border-r border-gray-900 p-5 text-sm text-gray-500 scrollbar-hide">
+    <div
+      className="
+        hidden 
+        h-screen
+         overflow-y-scroll 
+         border-r 
+        border-gray-900 p-5
+        text-xs 
+        text-gray-500 
+        scrollbar-hide 
+        sm:max-w-[12rem]
+        md:inline-flex 
+        lg:max-w-[15rem] lg:text-sm
+        "
+    >
       <div className="space-y-4">
         <button
           onClick={() => signOut()}
@@ -66,7 +84,11 @@ export default function Sidebar() {
 
         {/* playlists */}
         {playlists.map((playlist: any) => (
-          <p className="cursor-pointer hover:text-white" key={playlist.id}>
+          <p
+            onClick={() => setPlaylistId(playlist.id)}
+            className="cursor-pointer hover:text-white"
+            key={playlist.id}
+          >
             {playlist.name}
           </p>
         ))}
