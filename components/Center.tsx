@@ -42,7 +42,7 @@ export default function Center() {
   console.log(playlist)
   const curPlaylist: any = playlist
   return (
-    <div className="flex-grow text-white">
+    <div className="h-screen flex-grow overflow-y-scroll text-white scrollbar-hide">
       <header className="absolute top-5 right-8">
         <div className="flex cursor-pointer items-center space-x-3 rounded-full bg-black p-1 pr-2 opacity-90 hover:opacity-80">
           <img
@@ -56,7 +56,7 @@ export default function Center() {
       </header>
 
       <section
-        className={`flex h-80 items-end space-x-7 bg-gradient-to-b ${color} to-black p-8 text-white`}
+        className={`flex h-80 items-end space-x-7 bg-gradient-to-b  ${color} to-black p-8 text-white`}
       >
         <img
           className="h-44 w-44 shadow-2xl"
