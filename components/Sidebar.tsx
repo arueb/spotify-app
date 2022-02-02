@@ -8,7 +8,6 @@ import {
   PlusCircleIcon,
   HeartIcon,
   RssIcon,
-  LogoutIcon,
 } from '@heroicons/react/outline'
 import { signOut, useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
@@ -27,9 +26,8 @@ export default function Sidebar() {
     }
   }, [session, spotifyApi])
 
-  console.log('The playlist id is >>>', playlistId)
-  console.log('playlists:', playlists)
   console.log('session:', session)
+
   return (
     <div
       className="
@@ -47,13 +45,6 @@ export default function Sidebar() {
         "
     >
       <div className="space-y-4">
-        <button
-          onClick={() => signOut()}
-          className="flex items-center space-x-2 hover:text-white"
-        >
-          <LogoutIcon className="h-5 w-5" />
-          <p>Log out</p>
-        </button>
         <button className="flex items-center space-x-2 hover:text-white">
           <HomeIcon className="h-5 w-5" />
           <p>Home</p>

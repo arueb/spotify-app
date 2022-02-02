@@ -1,10 +1,25 @@
 import useSpotify from '../hooks/useSpotify'
 import { millisToMinutesAndSeconds } from '../lib/time'
+import { currentTrackIdState, isPlayingState } from '../atoms/songAtom'
+import { useRecoilState } from 'recoil'
 
 export default function Song({ order, track }: any) {
   const spotifyApi = useSpotify()
+  const [currentTrackId, setCurrentTrackId] =
+    useRecoilState(currentTrackIdState)
+  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState)
+
+  const playTrack = (): void => {
+    setCurrentTrackId(track.id)
+    setIsPlaying(true)
+    spotifyApi.play({ uris: [track.uri] })
+  }
+
   return (
-    <div className="grid cursor-pointer grid-cols-2 rounded-lg py-4 px-5 text-gray-500 hover:bg-gray-900">
+    <div
+      onClick={playTrack}
+      className="grid cursor-pointer grid-cols-2 rounded-lg py-4 px-5 text-gray-500 hover:bg-gray-900"
+    >
       <div className="flex items-center space-x-4">
         <p>{order + 1}</p>
         <img className="h-10 w-10" src={track.album.images[0].url} />
