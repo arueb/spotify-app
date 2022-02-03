@@ -75,7 +75,7 @@ export default function Player() {
 
   const debouncedAdjustVolume: any = useCallback(
     debounce((volume: number) => {
-      spotifyApi.setVolume(volume)
+      spotifyApi.setVolume(volume).catch((err: any) => {})
     }, 500),
     []
   )
